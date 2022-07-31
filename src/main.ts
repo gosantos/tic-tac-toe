@@ -1,6 +1,6 @@
 import { executeGameCommand, parseGameCommand } from './commands/game'
 import { gameCommandInstructions } from './game'
-const prompt = require('prompt-sync')()
+import { prompt } from './prompt'
 
 const loop = () => {
   console.log('Tic-tac-toe started.')

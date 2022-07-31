@@ -3,6 +3,7 @@ import { Player, PlayerO, PlayerX } from './player'
 import { executeMoveCommand, isMoveCommand, parseMoveCommand } from './commands/move'
 import { createBoard, printBoard } from './board'
 import { executeGameCommand, isGameCommand, parseGameCommand } from './commands/game'
+import { prompt } from './prompt'
 
 export const startGame = () => {
   const board = createBoard()
