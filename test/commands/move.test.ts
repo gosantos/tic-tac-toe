@@ -1,5 +1,5 @@
-import { Board, boardSize } from '../src/main'
-import { canMove, executeMoveCommand, MoveCommand, parseMoveCommand } from '../src/move'
+import { Board } from '../../src/board'
+import { executeMoveCommand, MoveCommand, parseMoveCommand } from '../../src/commands/move'
 
 let board: Board
 beforeEach(() => {
@@ -8,20 +8,6 @@ beforeEach(() => {
     ['X', '_', 'O'],
     ['_', '_', 'X'],
   ]
-})
-
-test('should return false when is taken up', () => {
-  expect(canMove(board, 0, 0)).toBeFalsy()
-  expect(canMove(board, 1, 0)).toBeFalsy()
-  expect(canMove(board, 0, 2)).toBeFalsy()
-  expect(canMove(board, 0, 2)).toBeFalsy()
-})
-
-test('should return true when is free', () => {
-  expect(canMove(board, 2, 0)).toBeTruthy()
-  expect(canMove(board, 0, 1)).toBeTruthy()
-  expect(canMove(board, 1, 1)).toBeTruthy()
-  expect(canMove(board, 2, 1)).toBeTruthy()
 })
 
 test('should make a move', () => {

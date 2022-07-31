@@ -1,9 +1,8 @@
-import { parseGameCommand } from '../src/command'
-import { Command } from '../src/main'
+import { GameCommand, parseGameCommand } from '../../src/commands/game'
 
 test('given a valid command, should be parsed', () => {
-  expect(parseGameCommand('I')).toEqual('I' as Command)
-  expect(parseGameCommand('S')).toEqual('S' as Command)
+  expect(parseGameCommand('I')).toEqual('I' as GameCommand)
+  expect(parseGameCommand('S')).toEqual('S' as GameCommand)
 })
 test('given a valid command, throw', () => {
   expect(() => parseGameCommand('fooo')).toThrow()

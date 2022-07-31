@@ -1,4 +1,5 @@
-import { Board, boardSize, Empty } from './main'
+import { Board, boardSize } from './board'
+import { Empty } from './player'
 
 export const hasWinner = (board: Board): boolean => {
   for (let row = 0; row < boardSize; row++) {

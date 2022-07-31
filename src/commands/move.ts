@@ -1,6 +1,5 @@
-import { Board, boardSize, Empty, Player } from './main'
-
-export const canMove = (board: Board, row: number, col: number): boolean => board[row][col] === Empty
+import { Board, boardSize } from '../board'
+import { Empty, Player } from '../player'
 
 const MoveList = ['1', '2', '3', '4', '5', '6', '7', '8', '9'] as const
 
@@ -15,21 +14,22 @@ export const parseMoveCommand = (m: string): MoveCommand => {
 }
 
 export const executeMoveCommand = (board: Board, player: Player, command: MoveCommand): void => {
+  const canMove = (board: Board, row: number, col: number): boolean => board[row][col] === Empty
+  const mapMoveCommand = (command: MoveCommand): [number, number] => {
+    let count = 0
+    for (let row = 0; row < boardSize; row++) {
+      for (let col = 0; col < boardSize; col++) {
+        count++
+        if (count === parseInt(command)) return [row, col]
+      }
+    }
+
+    throw new Error('Something crazy happened.')
+  }
+
   const [row, col] = mapMoveCommand(command)
 
   if (!canMove(board, row, col)) throw new Error('Movement not allowed.')
 
   board[row][col] = player
-}
-
-const mapMoveCommand = (command: MoveCommand): [number, number] => {
-  let count = 0
-  for (let row = 0; row < boardSize; row++) {
-    for (let col = 0; col < boardSize; col++) {
-      count++
-      if (count === parseInt(command)) return [row, col]
-    }
-  }
-
-  throw new Error('Something crazy happened.')
 }

@@ -1,5 +1,5 @@
+import { Board } from '../src/board'
 import { hasWinner } from '../src/hasWinner'
-import { Board } from '../src/main'
 
 test('should return false when no winner', () => {
   const board: Board = [
