@@ -1,5 +1,5 @@
 import { changePlayer, Empty, Player, PlayerX } from './player'
-import { executeMoveCommand, isMoveCommand, parseMoveCommand } from './commands/move'
+import { executeMoveCommand, isMoveCommand } from './commands/move'
 import { Board, boardSize, createBoard, printBoard } from './board'
 import { executeGameCommand, isGameCommand, parseGameCommand } from './commands/game'
 import { prompt } from './prompt'
@@ -14,9 +14,9 @@ export const startGame = () => {
 
     try {
       if (c != null && isGameCommand(c)) {
-        executeGameCommand(parseGameCommand(c))
+        executeGameCommand(c)
       } else if (c != null && isMoveCommand(c)) {
-        executeMoveCommand(board, currentPlayer, parseMoveCommand(c))
+        executeMoveCommand(board, currentPlayer, c)
         if (hasWinner(board)) break
 
         currentPlayer = changePlayer(currentPlayer)

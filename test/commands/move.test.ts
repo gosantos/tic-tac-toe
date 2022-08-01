@@ -1,5 +1,5 @@
 import { Board } from '../../src/board'
-import { executeMoveCommand, MoveCommand, parseMoveCommand } from '../../src/commands/move'
+import { executeMoveCommand, MoveCommand } from '../../src/commands/move'
 
 let board: Board
 beforeEach(() => {
@@ -28,14 +28,4 @@ test('should make a move', () => {
 })
 test('should throw when trying to make an ilegal move', () => {
   expect(() => executeMoveCommand(board, 'O', '3')).toThrowError('Movement not allowed.')
-})
-
-test('given a valid move, should be parsed', () => {
-  expect(parseMoveCommand('9')).toEqual('9' as MoveCommand)
-})
-test('given a valid move, throw', () => {
-  expect(() => parseMoveCommand('fooo')).toThrow()
-})
-test('should execute a move', () => {
-  expect(() => parseMoveCommand('fooo')).toThrow()
 })

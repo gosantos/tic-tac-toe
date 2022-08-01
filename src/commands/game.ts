@@ -13,7 +13,8 @@ export const parseGameCommand = (c: string): GameCommand => {
 }
 
 export const executeGameCommand = (c: GameCommand) => {
-  switch (c) {
+  const gameCommand = parseGameCommand(c)
+  switch (gameCommand) {
     case 'I': {
       console.log(gameCommandInstructions)
       break

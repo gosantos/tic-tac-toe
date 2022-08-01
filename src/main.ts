@@ -9,8 +9,7 @@ const loop = () => {
   while (true) {
     try {
       const input = prompt('Enter your command:')
-      const gameCommand = parseGameCommand(input)
-      executeGameCommand(gameCommand)
+      executeGameCommand(input)
     } catch (e) {
       console.error(e)
     }

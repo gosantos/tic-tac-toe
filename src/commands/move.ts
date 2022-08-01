@@ -7,27 +7,30 @@ export type MoveCommand = typeof MoveList[number]
 
 export const isMoveCommand = (m: string): m is MoveCommand => MoveList.includes(m.toUpperCase() as MoveCommand)
 
-export const parseMoveCommand = (m: string): MoveCommand => {
+const parseMoveCommand = (m: string): MoveCommand => {
   if (isMoveCommand(m)) return m.toUpperCase() as MoveCommand
 
   throw new Error('Invalid move command.')
 }
 
-export const executeMoveCommand = (board: Board, player: Player, command: MoveCommand): void => {
-  const canMove = (board: Board, row: number, col: number): boolean => board[row][col] === Empty
-  const mapMoveCommand = (command: MoveCommand): [number, number] => {
-    let count = 0
-    for (let row = 0; row < boardSize; row++) {
-      for (let col = 0; col < boardSize; col++) {
-        count++
-        if (count === parseInt(command)) return [row, col]
-      }
-    }
+const canMove = (board: Board, row: number, col: number): boolean => board[row][col] === Empty
 
-    throw new Error('Something crazy happened.')
+const mapMoveCommand = (command: MoveCommand): [number, number] => {
+  let count = 0
+  for (let row = 0; row < boardSize; row++) {
+    for (let col = 0; col < boardSize; col++) {
+      count++
+      if (count === parseInt(command)) return [row, col]
+    }
   }
 
-  const [row, col] = mapMoveCommand(command)
+  throw new Error('Something crazy happened.')
+}
+
+export const executeMoveCommand = (board: Board, player: Player, command: string): void => {
+  const c = parseMoveCommand(command)
+
+  const [row, col] = mapMoveCommand(c)
 
   if (!canMove(board, row, col)) throw new Error('Movement not allowed.')
 
